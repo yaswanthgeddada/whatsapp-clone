@@ -44,6 +44,26 @@ export function OwnAuthProvider({ children }) {
     setCurrentUser(user);
   }
 
+  function updateCurrentUser(data, whichProp) {
+    let user = currentUser;
+
+    localStorage.removeItem("currentUser");
+
+    if (whichProp === "profilepic") {
+      user.profilePicture = data;
+    }
+
+    if (whichProp === "username") {
+      user.username = data;
+    }
+
+    if (whichProp === "bio") {
+      user.bio = data;
+    }
+    localStorage.setItem("currentUser", JSON.stringify(user));
+    setCurrentUser(user);
+  }
+
   async function logout() {
     await localStorage.removeItem("currentUser");
     setCurrentUser();
@@ -55,6 +75,7 @@ export function OwnAuthProvider({ children }) {
 
   const value = {
     currentUser,
+    updateCurrentUser,
     signIn,
     logout,
     login,

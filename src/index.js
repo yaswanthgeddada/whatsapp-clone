@@ -6,17 +6,20 @@ import { AuthProvider } from "./context/AuthContext";
 import { OwnAuthProvider } from "./context/OwnAuthContext";
 import { UserProvider } from "./context/UserContext";
 import { ConvProvider } from "./context/ConversationContext";
+import { SocketProvider } from "./context/SocketContext";
 
 ReactDOM.render(
-  <UserProvider>
-    <OwnAuthProvider>
-      <AuthProvider>
-        <ConvProvider>
-          <App />
-        </ConvProvider>
-      </AuthProvider>
-    </OwnAuthProvider>
-  </UserProvider>,
+  <SocketProvider>
+    <UserProvider>
+      <OwnAuthProvider>
+        <AuthProvider>
+          <ConvProvider>
+            <App />
+          </ConvProvider>
+        </AuthProvider>
+      </OwnAuthProvider>
+    </UserProvider>
+  </SocketProvider>,
 
   document.querySelector("#root")
 );

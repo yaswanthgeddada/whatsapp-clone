@@ -19,13 +19,15 @@ const MessageSender = ({
       </div>
       <div className="flex w-full px-10">
         {isAFriend && (
-          <input
-            type="text"
-            onChange={(e) => setNewMessage(e.target.value)}
-            value={newMessage}
-            placeholder="Type a message"
-            className={` w-full text-lg rounded-full  py-3 bg-gray-700 border-none focus:ring-0 text-gray-200`}
-          />
+          <form onSubmit={sendMessageHandler} className="w-full">
+            <input
+              type="text"
+              onChange={(e) => setNewMessage(e.target.value)}
+              value={newMessage}
+              placeholder="Type a message"
+              className={` w-full text-lg rounded-full  py-3 bg-gray-700 border-none focus:ring-0 text-gray-200`}
+            />
+          </form>
         )}
       </div>
       <div

@@ -8,7 +8,7 @@ import { useUser } from "../../context/UserContext";
 import { useConv } from "../../context/ConversationContext";
 import { useOwnAuth } from "../../context/OwnAuthContext";
 
-import { io } from "socket.io-client";
+import { useSocket } from "../../context/SocketContext";
 
 const Conversation = () => {
   const { getUser } = useUser();
@@ -18,7 +18,10 @@ const Conversation = () => {
     getMessagesByConvId,
     sendNewMessage,
     acceptFreindRequest,
+    deleteConversation,
   } = useConv();
+
+  const { socket } = useSocket();
 
   const [user, setUser] = useState();
   const [messages, setMessages] = useState();
@@ -26,16 +29,17 @@ const Conversation = () => {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [isAFriend, setIsAFriend] = useState(false);
   const [reqIsAccepted, setReqIsAccepted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const socket = useRef();
   const scrollRef = useRef();
 
   const friendId = currentConversation?.members.find(
     (m) => m !== currentUser._id
   );
 
-  const sendMessageHandler = async () => {
+  const sendMessageHandler = async (e) => {
     // console.log(newMessage);
+    e.preventDefault();
 
     if (newMessage) {
       socket.current.emit("sendMessage", {
@@ -59,8 +63,6 @@ const Conversation = () => {
   };
 
   useEffect(() => {
-    socket.current = io("ws://localhost:4001");
-
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -68,7 +70,7 @@ const Conversation = () => {
         createAt: Date.now(),
       });
     });
-  }, []);
+  }, [socket]);
 
   useEffect(() => {
     arrivalMessage &&
@@ -81,7 +83,7 @@ const Conversation = () => {
     socket.current.on("getUsers", (users) => {
       // console.log(users);
     });
-  }, [currentUser]);
+  }, [currentUser, socket]);
 
   //get friend details for conv header
   const getFrind = useCallback(async () => {
@@ -97,6 +99,7 @@ const Conversation = () => {
     // console.log("req is pending", reqispending);
     setReqIsAccepted(reqispending);
     setIsAFriend(isFriend);
+    setIsLoading(false);
   }, [currentUser._id, friendId, getUser]);
   useEffect(() => {
     if (currentConversation) {
@@ -116,6 +119,17 @@ const Conversation = () => {
     getAllMessages();
   }, [currentConversation, getAllMessages, getMessagesByConvId]);
 
+  const deleteConv = async () => {
+    try {
+      const res = await deleteConversation(currentConversation._id);
+
+      console.log(currentConversation);
+
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   //scroll to view
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -133,7 +147,7 @@ const Conversation = () => {
         <div className="flex flex-col  justify-center items-center w-full h-screen select-none space-y-5">
           <div>
             <img
-              src="/images/backgroundImage.jpg"
+              src="https://firebasestorage.googleapis.com/v0/b/chit-chat123.appspot.com/o/backgroundImage.JPG?alt=media&token=509415b1-8f1e-4076-9ce5-e59c10bfce35"
               alt=""
               className="h-56 w-56"
             />
@@ -151,57 +165,61 @@ const Conversation = () => {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col h-screen">
-          <div>
-            <ConversationHeader user={user} />
-          </div>
-          <div className="bg-pale h-full overflow-y-scroll">
-            <div className="">
-              {messages &&
-                messages.map((msg) => (
-                  <div ref={scrollRef} key={msg._id}>
-                    <Messages
-                      text={msg.text}
-                      currentUser={currentUser}
-                      own={currentUser._id === msg.sender}
-                    />
-                  </div>
-                ))}
+        <div>
+          {!isLoading && (
+            <div className="flex flex-col h-screen">
+              <div>
+                <ConversationHeader user={user} deleteConv={deleteConv} />
+              </div>
+              <div className="bg-pale h-full overflow-y-scroll">
+                <div className="">
+                  {messages &&
+                    messages.map((msg) => (
+                      <div ref={scrollRef} key={msg._id}>
+                        <Messages
+                          text={msg.text}
+                          currentUser={currentUser}
+                          own={currentUser._id === msg.sender}
+                        />
+                      </div>
+                    ))}
 
-              {reqIsAccepted && (
-                <div>
-                  <div className="text-center w-3/5 mt-10 mx-auto bg-pale-light border-b-4 border-wgreen py-2 rounded-xl  text-gray-300 text-2xl sticky bottom-0">
-                    you have sent a Friend Request to{" "}
-                    <span className="text-wbgreen shadow">
-                      {user?.username}
-                    </span>
-                  </div>
+                  {reqIsAccepted && (
+                    <div>
+                      <div className="text-center w-3/5 mt-10 mx-auto bg-pale-light border-b-4 border-wgreen py-2 rounded-xl  text-gray-300 text-2xl sticky bottom-0">
+                        you have sent a Friend Request to{" "}
+                        <span className="text-wbgreen shadow">
+                          {user?.username}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                  {!reqIsAccepted && !isAFriend && (
+                    <div className="text-center w-3/5 mt-10 mx-auto bg-pale-light border-b-4 border-wgreen py-2 rounded-xl  text-gray-300 text-2xl sticky bottom-0">
+                      {user?.username} wants to be friends with you :{" "}
+                      <button
+                        onClick={AcceptTheFriendReq}
+                        className="bg-wgreen hover:bg-wbgreen hover:text-gray-800 focus:outline-none px-8 py-2 mx-5 text-base rounded-lg "
+                      >
+                        Accept
+                      </button>
+                      <button className="bg-yellow-800 hover:bg-yellow-900 focus:outline-none px-8 py-2  text-base rounded-lg ">
+                        Reject
+                      </button>
+                    </div>
+                  )}
                 </div>
-              )}
-              {!reqIsAccepted && !isAFriend && (
-                <div className="text-center w-3/5 mt-10 mx-auto bg-pale-light border-b-4 border-wgreen py-2 rounded-xl  text-gray-300 text-2xl sticky bottom-0">
-                  {user?.username} wants to be friends with you :{" "}
-                  <button
-                    onClick={AcceptTheFriendReq}
-                    className="bg-wgreen hover:bg-wbgreen hover:text-gray-800 focus:outline-none px-8 py-2 mx-5 text-base rounded-lg "
-                  >
-                    Accept
-                  </button>
-                  <button className="bg-yellow-800 hover:bg-yellow-900 focus:outline-none px-8 py-2  text-base rounded-lg ">
-                    Reject
-                  </button>
-                </div>
-              )}
+              </div>
+              <div className="w-full">
+                <MessageSender
+                  setNewMessage={setNewMessage}
+                  newMessage={newMessage}
+                  sendMessageHandler={sendMessageHandler}
+                  isAFriend={isAFriend}
+                />
+              </div>
             </div>
-          </div>
-          <div className="w-full">
-            <MessageSender
-              setNewMessage={setNewMessage}
-              newMessage={newMessage}
-              sendMessageHandler={sendMessageHandler}
-              isAFriend={isAFriend}
-            />
-          </div>
+          )}
         </div>
       )}
     </div>

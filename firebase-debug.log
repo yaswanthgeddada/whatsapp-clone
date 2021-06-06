@@ -1,0 +1,133 @@
+[debug] [2021-06-06T12:39:16.837Z] ----------------------------------------------------------------------
+[debug] [2021-06-06T12:39:16.842Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-06-06T12:39:16.842Z] CLI Version:   9.12.1
+[debug] [2021-06-06T12:39:16.842Z] Platform:      win32
+[debug] [2021-06-06T12:39:16.843Z] Node Version:  v14.17.0
+[debug] [2021-06-06T12:39:16.848Z] Time:          Sun Jun 06 2021 18:09:16 GMT+0530 (India Standard Time)
+[debug] [2021-06-06T12:39:16.849Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-06-06T12:39:16.860Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-06-06T12:39:16.861Z] > authorizing via signed-in user (yaswanthgeddada1@gmail.com)
+[debug] [2021-06-06T12:39:16.861Z] [iam] checking project chit-chat123 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-06-06T12:39:16.864Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/chit-chat123:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-06-06T12:39:18.819Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 06 Jun 2021 12:39:17 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1153","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-06T12:39:18.826Z] > refreshing access token with scopes: []
+[debug] [2021-06-06T12:39:18.827Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-06-06T12:39:39.951Z] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2021-06-06T12:39:40.353Z] FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+    at invalidCredentialError (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\auth.js:141:12)
+    at refreshTokens (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\auth.js:448:15)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async Client.getAccessToken (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:144:23)
+    at async Client.addAuthHeader (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:135:21)
+    at async Client.request (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:93:34)
+    at async Object.getFirebaseProject (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:290:21)
+    at async Object.getDefaultHostingSite (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\getDefaultHostingSite.js:8:21)
+    at async requireHostingSite (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\requireHostingSite.js:9:18)
+    at async Object.fn (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\deploy.js:66:9)
+    at async C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\command.js:169:17
+[error] 
+[error] Error: Failed to get Firebase project chit-chat123. Please make sure the project exists and your account has permission to access it.
+[debug] [2021-06-06T12:39:48.709Z] ----------------------------------------------------------------------
+[debug] [2021-06-06T12:39:48.711Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-06-06T12:39:48.711Z] CLI Version:   9.12.1
+[debug] [2021-06-06T12:39:48.711Z] Platform:      win32
+[debug] [2021-06-06T12:39:48.711Z] Node Version:  v14.17.0
+[debug] [2021-06-06T12:39:48.712Z] Time:          Sun Jun 06 2021 18:09:48 GMT+0530 (India Standard Time)
+[debug] [2021-06-06T12:39:48.712Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-06-06T12:39:48.719Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-06-06T12:39:48.720Z] > authorizing via signed-in user (yaswanthgeddada1@gmail.com)
+[debug] [2021-06-06T12:39:48.720Z] [iam] checking project chit-chat123 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-06-06T12:39:48.722Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/chit-chat123:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-06-06T12:39:50.308Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 06 Jun 2021 12:39:49 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1152","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-06T12:39:50.309Z] > refreshing access token with scopes: []
+[debug] [2021-06-06T12:39:50.310Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-06-06T12:40:11.369Z] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2021-06-06T12:40:11.819Z] FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+    at invalidCredentialError (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\auth.js:141:12)
+    at refreshTokens (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\auth.js:448:15)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async Client.getAccessToken (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:144:23)
+    at async Client.addAuthHeader (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:135:21)
+    at async Client.request (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:93:34)
+    at async Object.getFirebaseProject (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:290:21)
+    at async Object.getDefaultHostingSite (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\getDefaultHostingSite.js:8:21)
+    at async requireHostingSite (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\requireHostingSite.js:9:18)
+    at async Object.fn (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\deploy.js:66:9)
+    at async C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\command.js:169:17
+[error] 
+[error] Error: Failed to get Firebase project chit-chat123. Please make sure the project exists and your account has permission to access it.
+[debug] [2021-06-06T12:40:45.068Z] ----------------------------------------------------------------------
+[debug] [2021-06-06T12:40:45.070Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-06-06T12:40:45.071Z] CLI Version:   9.12.1
+[debug] [2021-06-06T12:40:45.071Z] Platform:      win32
+[debug] [2021-06-06T12:40:45.071Z] Node Version:  v14.17.0
+[debug] [2021-06-06T12:40:45.072Z] Time:          Sun Jun 06 2021 18:10:45 GMT+0530 (India Standard Time)
+[debug] [2021-06-06T12:40:45.072Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-06-06T12:40:45.078Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-06-06T12:40:45.078Z] > authorizing via signed-in user (yaswanthgeddada1@gmail.com)
+[debug] [2021-06-06T12:40:45.078Z] [iam] checking project chit-chat123 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-06-06T12:40:45.080Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/chit-chat123:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-06-06T12:40:46.813Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 06 Jun 2021 12:40:45 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1131","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-06T12:40:46.815Z] > refreshing access token with scopes: []
+[debug] [2021-06-06T12:40:46.815Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-06-06T12:41:07.834Z] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2021-06-06T12:41:08.562Z] FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+    at invalidCredentialError (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\auth.js:141:12)
+    at refreshTokens (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\auth.js:448:15)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async Client.getAccessToken (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:144:23)
+    at async Client.addAuthHeader (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:135:21)
+    at async Client.request (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:93:34)
+    at async Object.getFirebaseProject (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:290:21)
+    at async Object.getDefaultHostingSite (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\getDefaultHostingSite.js:8:21)
+    at async requireHostingSite (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\requireHostingSite.js:9:18)
+    at async Object.fn (C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\deploy.js:66:9)
+    at async C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\command.js:169:17
+[error] 
+[error] Error: Failed to get Firebase project chit-chat123. Please make sure the project exists and your account has permission to access it.
+[debug] [2021-06-06T12:42:51.600Z] ----------------------------------------------------------------------
+[debug] [2021-06-06T12:42:51.602Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\yaswa\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-06-06T12:42:51.602Z] CLI Version:   9.12.1
+[debug] [2021-06-06T12:42:51.602Z] Platform:      win32
+[debug] [2021-06-06T12:42:51.603Z] Node Version:  v14.17.0
+[debug] [2021-06-06T12:42:51.603Z] Time:          Sun Jun 06 2021 18:12:51 GMT+0530 (India Standard Time)
+[debug] [2021-06-06T12:42:51.604Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-06-06T12:42:51.609Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-06-06T12:42:51.609Z] > authorizing via signed-in user (yaswanthgeddada1@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Projects\React-new-projects\chit-chat\chit-chat
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+

@@ -78,8 +78,19 @@ export function ConvProvider({ children }) {
     }
   }
 
+  async function deleteConversation(conversationId) {
+    try {
+      await axios
+        .delete(`/conversation/${conversationId}`)
+        .then(setCorrentConversation());
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const value = {
     currentConversation,
+    deleteConversation,
     setCorrentConversation,
     getConverssation,
     getMessagesByConvId,
