@@ -1,5 +1,5 @@
 import React from "react";
-import { FaEllipsisV, FaSistrix, FaTrashAlt } from "react-icons/fa";
+import { FaSistrix, FaTrashAlt } from "react-icons/fa";
 
 import { useUser } from "../../context/UserContext";
 

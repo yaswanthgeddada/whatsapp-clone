@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Sidebar from "../components/sidebar/Sidebar";
 import Conversation from "../components/conversation/Conversation";
 import FriendProfile from "../components/sidebar/FriendProfile";

@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React from "react";
 import { FaEllipsisV } from "react-icons/fa";
 
 import { Menu } from "@headlessui/react";
 
 const SidebarDropdown = ({ logoutHandler, setIsOpen, isOpen }) => {
-  const history = useHistory();
-
   return (
     <div>
       <Menu as="div" className="relative inline-block text-left ">

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 
 import { AiTwotoneEdit } from "react-icons/ai";
 import { BiArrowBack } from "react-icons/bi";
@@ -49,7 +49,7 @@ export default function Profile({ setIsOpen, currentUser }) {
 
   const updatePic = async (img) => {
     try {
-      const result = await updateUserDetails(currentUser._id, {
+      await updateUserDetails(currentUser._id, {
         userId: currentUser._id,
         profilePicture: img,
       });
@@ -65,7 +65,7 @@ export default function Profile({ setIsOpen, currentUser }) {
     e.preventDefault();
     // console.log(e.target.firstChild.value);
 
-    const result = await updateUserDetails(currentUser._id, {
+    await updateUserDetails(currentUser._id, {
       userId: currentUser._id,
       username: e.target.firstChild.value,
     });
@@ -80,7 +80,7 @@ export default function Profile({ setIsOpen, currentUser }) {
     e.preventDefault();
     // console.log(e.target.firstChild.value);
 
-    const result = await updateUserDetails(currentUser._id, {
+    await updateUserDetails(currentUser._id, {
       userId: currentUser._id,
       bio: e.target.firstChild.value,
     });
