@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 
 // import { useAuth } from "../context/AuthContext";
 import { useOwnAuth } from "../context/OwnAuthContext";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Login = () => {
   // const { login, resetPassword } = useAuth();
@@ -11,21 +12,26 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     if (email !== "" && password !== "") {
       try {
+        setIsLoading(true);
         const result = await login(email, password);
         if (result) {
-          setError(result);
+          setError(result + "! 🤦‍♂️ ");
         } else {
           histoy.push("/");
         }
+        setIsLoading(false);
       } catch (error) {
-        setError("Wrong Credentails");
+        setError("Wrong Credentails! & stop testing me 🤦‍♂️");
       }
+    } else {
+      setError("Stop testing me 🤦‍♂️");
     }
   };
 
@@ -106,7 +112,10 @@ const Login = () => {
               onClick={(e) => handleLogin(e)}
               className="bg-wbgreen rounded-full text-gray-100 hover:bg-wgreen  border-none focus:outline-none  py-2 "
             >
-              Login
+              <span className="pt-1 flex items-center justify-center space-x-3">
+                {isLoading && <CircularProgress size={20} />}
+                <p>Login</p>
+              </span>
             </button>
 
             <hr />

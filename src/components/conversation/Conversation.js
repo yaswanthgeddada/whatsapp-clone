@@ -112,6 +112,7 @@ const Conversation = () => {
   const getAllMessages = useCallback(async () => {
     const mess = await getMessagesByConvId(currentConversation?._id);
     // console.log(mess);
+    // const messs = mess.sort((a, b) => a.createAt - b.createAt);
     setMessages(mess);
   }, [currentConversation?._id, getMessagesByConvId]);
 
@@ -166,14 +167,14 @@ const Conversation = () => {
         </div>
       ) : (
         <div>
-          {!isLoading && (
+          {!isLoading ? (
             <div className="flex flex-col h-screen">
               <div>
                 <ConversationHeader user={user} deleteConv={deleteConv} />
               </div>
               <div className="bg-pale h-full overflow-y-scroll">
                 <div className="">
-                  {messages &&
+                  {messages ? (
                     messages.map((msg) => (
                       <div ref={scrollRef} key={msg._id}>
                         <Messages
@@ -182,7 +183,12 @@ const Conversation = () => {
                           own={currentUser._id === msg.sender}
                         />
                       </div>
-                    ))}
+                    ))
+                  ) : (
+                    <div className="text-white flex items-center justify-center">
+                      Loading
+                    </div>
+                  )}
 
                   {reqIsAccepted && (
                     <div>
@@ -218,6 +224,10 @@ const Conversation = () => {
                   isAFriend={isAFriend}
                 />
               </div>
+            </div>
+          ) : (
+            <div className="text-white flex items-center justify-center">
+              Loading
             </div>
           )}
         </div>

@@ -10,7 +10,7 @@ import { useUser } from "../../context/UserContext";
 
 import { useSocket } from "../../context/SocketContext";
 
-const Sidebar = () => {
+const Sidebar = ({ setToggleSidebar, toggleSidebar }) => {
   //every time it is creating a new socket change it
   const { socket } = useSocket();
   const [currentConv, setCurrentConv] = useState();
@@ -219,6 +219,8 @@ const Sidebar = () => {
             <ConversationListItem
               conversation={conv}
               currentUser={currentUser}
+              setToggleSidebar={setToggleSidebar}
+              toggleSidebar={toggleSidebar}
               setCorrentConversation={setCorrentConversation}
             />
           </div>

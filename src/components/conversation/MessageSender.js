@@ -9,7 +9,7 @@ const MessageSender = ({
 }) => {
   return (
     <div className="flex justify-around w-full items-center py-3 bg-pale-light">
-      <div className="flex text-gray-400 space-x-10 px-5 ">
+      <div className="flex text-gray-400 md:space-x-10 space-x-2  md:px-5  px-4">
         <div className="cursor-pointer">
           <FaSmile size="25" />
         </div>
@@ -17,9 +17,9 @@ const MessageSender = ({
           <FaPaperclip size="25" />
         </div>
       </div>
-      <div className="flex w-full px-10">
+      <div className="flex w-full md:px-10 px-2">
         {isAFriend && (
-          <form onSubmit={sendMessageHandler} className="w-full">
+          <form onSubmit={sendMessageHandler} className="md:w-full w-64 ">
             <input
               type="text"
               onChange={(e) => setNewMessage(e.target.value)}

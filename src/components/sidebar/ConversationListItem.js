@@ -7,6 +7,8 @@ const ConversationListItem = ({
   conversation,
   currentUser,
   setCorrentConversation,
+  setToggleSidebar,
+  toggleSidebar,
 }) => {
   const { getUser } = useUser();
   const { getMessagesByConvId } = useConv();
@@ -39,6 +41,7 @@ const ConversationListItem = ({
     <div
       onClick={() => {
         setCorrentConversation(conversation);
+        setToggleSidebar(!toggleSidebar);
       }}
       className={`flex justify-between cursor-pointer  px-4 py-3 hover:bg-pale-light border-b border-gray-400 border-opacity-25   `}
     >

@@ -11,7 +11,7 @@ const FriendProfile = ({ friend }) => {
 
   return (
     <div>
-      <div className="flex flex-col bg-pale w-96 h-screen select-none ">
+      <div className="flex flex-col bg-pale w-screen md:w-96 sm:z-10 h-screen select-none ">
         <div className="bg-profileHead w-full h-20">
           <div
             onClick={() => setShowFriendProfile()}

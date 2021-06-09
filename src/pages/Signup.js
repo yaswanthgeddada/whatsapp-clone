@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 
 // import { useAuth } from "../context/AuthContext";
 import { useOwnAuth } from "../context/OwnAuthContext";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Singup = () => {
   // const { singIn } = useAuth();
@@ -14,22 +15,33 @@ const Singup = () => {
   const username = useRef();
   const confirmPassword = useRef();
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSingup = async (e) => {
     e.preventDefault();
-    if (password.current.value === confirmPassword.current.value) {
-      try {
-        await signIn(
-          email.current.value,
-          password.current.value,
-          username.current.value
-        );
-        history.push("/");
-      } catch {
-        setError("failed to signup");
+
+    const isValid =
+      email.current.value || password.current.value || username.current.value;
+
+    if (isValid) {
+      if (password.current.value === confirmPassword.current.value) {
+        try {
+          setIsLoading(true);
+          await signIn(
+            email.current.value,
+            password.current.value,
+            username.current.value
+          );
+          history.push("/");
+        } catch {
+          setError("failed to signup");
+        }
+      } else {
+        setError("Password not matching, 🤦‍♂️");
       }
+      setIsLoading(false);
     } else {
-      setError("Password not matching");
+      setError("Are you blind ?  🤦‍♂️");
     }
   };
 
@@ -108,7 +120,10 @@ const Singup = () => {
                 onClick={(e) => handleSingup(e)}
                 className="bg-wbgreen rounded-full text-gray-100 hover:bg-wgreen  border-none focus:outline-none  py-2 "
               >
-                Signup
+                <span className="pt-1 flex items-center justify-center space-x-3">
+                  {isLoading && <CircularProgress size={20} />}
+                  <p>Signup</p>
+                </span>
               </button>
               <hr />
               <Link

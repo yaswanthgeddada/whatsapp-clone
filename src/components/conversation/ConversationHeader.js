@@ -19,7 +19,7 @@ const ConversationHeader = ({ user, deleteConv }) => {
           {user?.username}
         </div>
       </div>
-      <div className="text-gray-400 flex items-center space-x-5">
+      <div className="text-gray-400 flex items-center space-x-10 mx-10 md:mx-0">
         <span className="cursor-pointer">
           <FaSistrix size="22" />
         </span>
