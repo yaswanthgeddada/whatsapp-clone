@@ -34,7 +34,7 @@ const Conversation = () => {
   const scrollRef = useRef();
 
   const friendId = currentConversation?.members.find(
-    (m) => m !== currentUser._id
+    (m) => m !== currentUser?._id
   );
 
   const sendMessageHandler = async (e) => {
@@ -121,11 +121,11 @@ const Conversation = () => {
 
   const deleteConv = async () => {
     try {
-      const res = await deleteConversation(currentConversation._id);
+      await deleteConversation(currentConversation._id);
 
-      console.log(currentConversation);
+      // console.log(currentConversation);
 
-      console.log(res);
+      // console.log(res);
     } catch (error) {
       console.log(error);
     }

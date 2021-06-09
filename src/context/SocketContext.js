@@ -13,6 +13,8 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     socket.current = io("https://whatsapp-socket333.herokuapp.com/");
+
+    // socket.current = io("http://localhost:4001/");
   }, []);
 
   const value = {

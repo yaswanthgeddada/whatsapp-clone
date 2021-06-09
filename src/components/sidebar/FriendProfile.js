@@ -5,7 +5,7 @@ import { AiOutlineClose, AiOutlineGithub, AiOutlineMail } from "react-icons/ai";
 import { useUser } from "../../context/UserContext";
 
 const FriendProfile = ({ friend }) => {
-  console.log(friend);
+  // console.log(friend);
 
   const { setShowFriendProfile } = useUser();
 

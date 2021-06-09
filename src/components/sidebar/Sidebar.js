@@ -41,7 +41,7 @@ const Sidebar = () => {
       setArrialConversationReq({
         members: data.members,
       });
-      console.log("arrived a new req");
+      // console.log("arrived a new req");
     });
   }, [socket]);
 
@@ -52,7 +52,7 @@ const Sidebar = () => {
       try {
         const result = await getConverssation(currentUser._id);
         setCurrentConv(result);
-        console.log(result);
+        // console.log(result);
       } catch (error) {
         console.log(error);
       }
@@ -72,7 +72,7 @@ const Sidebar = () => {
         setLoading(true);
         try {
           const result = await searchUser(searchTerm);
-          console.log(result);
+          // console.log(result);
           const res = result.filter(
             (u) =>
               u._id !== currentUser._id && u.friends.includes(currentUser._id)
@@ -98,7 +98,7 @@ const Sidebar = () => {
 
   const onSelectContact = async (contact) => {
     if (contact) {
-      console.log(contact);
+      // console.log(contact);
       setSearchTerm("");
 
       const isFriend = contact.friends.includes(currentUser._id);
@@ -119,7 +119,7 @@ const Sidebar = () => {
 
         if (isFriend) {
           if (isThereAConvAlredy) {
-            console.log(isThereAConvAlredy);
+            // console.log(isThereAConvAlredy);
 
             // show the converion that alredy exists.
             setCorrentConversation(
@@ -129,11 +129,11 @@ const Sidebar = () => {
             // he is a friend and no cov , start a new one and show it
             const newConv = await newConversation(currentUser._id, contact._id);
             setCorrentConversation(newConv);
-            console.log(newConv);
+            // console.log(newConv);
           }
         } else {
           //is not friends send a freidn request.
-          console.log(isThereAConvAlredy);
+          // console.log(isThereAConvAlredy);
           try {
             socket.current.emit("friendRequest", {
               senderId: currentUser._id,
@@ -141,13 +141,13 @@ const Sidebar = () => {
             });
 
             const newConv = await newConversation(currentUser._id, contact._id);
-            console.log(newConv);
+            // console.log(newConv);
 
             const result = await sendFreindRequest(
               currentUser._id,
               contact._id
             );
-            console.log(result);
+            // console.log(result);
             window.alert(result);
             setCorrentConversation(newConv);
           } catch (error) {

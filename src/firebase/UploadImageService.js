@@ -16,7 +16,7 @@ export const addImageToStorageBucket = async (
   uploadTask.on(
     "state_changed",
     (snapshot) => {
-      console.log(snapshot.bytesTransferred);
+      // console.log(snapshot.bytesTransferred);
       setProgressValue((snapshot.bytesTransferred / image.size) * 100);
     },
     (error) => {
@@ -28,7 +28,7 @@ export const addImageToStorageBucket = async (
         .child(imageName)
         .getDownloadURL()
         .then((url) => {
-          console.log(url);
+          // console.log(url);
           setImageUrl(url);
           setIsLoading(false);
           updatePic(url);

@@ -27,7 +27,7 @@ export default function Profile({ setIsOpen, currentUser }) {
 
   const onSelectProfilePic = async (e) => {
     if (e.target.files[0]) {
-      console.log(e.target.files[0]);
+      // console.log(e.target.files[0]);
       let image = e.target.files[0];
 
       try {
@@ -39,8 +39,8 @@ export default function Profile({ setIsOpen, currentUser }) {
           "profilepics",
           updatePic
         ).then(() => {});
-        console.log(progress);
-        console.log(imageUrl);
+        // console.log(progress);
+        // console.log(imageUrl);
       } catch (error) {
         console.log(error);
       }
@@ -54,7 +54,7 @@ export default function Profile({ setIsOpen, currentUser }) {
         profilePicture: img,
       });
       updateCurrentUser(img, "profilepic");
-      console.log(result);
+      // console.log(result);
     } catch (error) {
       console.log(error);
     }
@@ -63,7 +63,7 @@ export default function Profile({ setIsOpen, currentUser }) {
   //update the username and change the current user in loaclstorage
   const updateUserName = async (e) => {
     e.preventDefault();
-    console.log(e.target.firstChild.value);
+    // console.log(e.target.firstChild.value);
 
     const result = await updateUserDetails(currentUser._id, {
       userId: currentUser._id,
@@ -71,14 +71,14 @@ export default function Profile({ setIsOpen, currentUser }) {
     });
     updateCurrentUser(e.target.firstChild.value, "username");
 
-    console.log(result);
+    // console.log(result);
     setShowInputForUsername(false);
   };
 
   //update the bio and change the current user in loaclstorage
   const updateBio = async (e) => {
     e.preventDefault();
-    console.log(e.target.firstChild.value);
+    // console.log(e.target.firstChild.value);
 
     const result = await updateUserDetails(currentUser._id, {
       userId: currentUser._id,
@@ -86,7 +86,7 @@ export default function Profile({ setIsOpen, currentUser }) {
     });
     updateCurrentUser(e.target.firstChild.value, "bio");
 
-    console.log(result);
+    // console.log(result);
     setShowInputForBio(false);
   };
 

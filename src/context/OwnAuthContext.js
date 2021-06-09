@@ -30,7 +30,7 @@ export function OwnAuthProvider({ children }) {
     try {
     } catch (error) {}
     const result = await axios.post("/auth/login", body);
-    console.log(result);
+    // console.log(result);
     if (result.data === "user not found" || result.data === "wrong password") {
       return result.data;
     }
