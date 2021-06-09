@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 import axios from "../api";
+var CryptoJS = require("crypto-js");
 
 const OwnAuthContext = createContext();
 
@@ -34,20 +35,42 @@ export function OwnAuthProvider({ children }) {
     if (result.data === "user not found" || result.data === "wrong password") {
       return result.data;
     }
-    localStorage.setItem("currentUser", JSON.stringify(result.data));
+
+    let cipherText = CryptoJS.AES.encrypt(
+      JSON.stringify(result.data),
+      "thisisimysecretkey"
+    ).toString();
+
+    // localStorage.setItem("currentUser", JSON.stringify(result.data));
+
+    // console.log(cipherText);
+
+    localStorage.setItem("user", cipherText);
+
     setCurrentUser(result.data);
   }
 
   function getCurrentUser() {
-    const user = JSON.parse(localStorage.getItem("currentUser"));
+    // const user = JSON.parse(localStorage.getItem("currentUser"));
+
+    const EncUser = localStorage.getItem("user");
+
+    if (EncUser) {
+      var bytes = CryptoJS.AES.decrypt(EncUser, "thisisimysecretkey");
+      var DecriptedUser = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    }
+
+    // console.log("decripted text :", DecriptedUser);
+
     // console.log(user);
-    setCurrentUser(user);
+    setCurrentUser(DecriptedUser);
   }
 
   function updateCurrentUser(data, whichProp) {
     let user = currentUser;
 
-    localStorage.removeItem("currentUser");
+    // localStorage.removeItem("currentUser");
+    localStorage.removeItem("user");
 
     if (whichProp === "profilepic") {
       user.profilePicture = data;
@@ -60,12 +83,22 @@ export function OwnAuthProvider({ children }) {
     if (whichProp === "bio") {
       user.bio = data;
     }
-    localStorage.setItem("currentUser", JSON.stringify(user));
+    // localStorage.setItem("currentUser", JSON.stringify(user));
+
+    let cipherText = CryptoJS.AES.encrypt(
+      JSON.stringify(user),
+      "thisisimysecretkey"
+    ).toString();
+
+    localStorage.setItem("user", cipherText);
+
     setCurrentUser(user);
   }
 
   async function logout() {
-    await localStorage.removeItem("currentUser");
+    // await localStorage.removeItem("currentUser");
+    await localStorage.removeItem("user");
+
     setCurrentUser();
   }
 
