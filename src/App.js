@@ -26,10 +26,16 @@ function App() {
             <Route path="/" exact>
               {!currentUser ? <Redirect to="/login" /> : <Home />}
             </Route>
-            <Route path="/signup" exact component={Signup} />
-            <Route path="/login" exact>
-              {currentUser ? <Home /> : <Login />}
-            </Route>
+            <Route
+              path="/signup"
+              exact
+              component={!currentUser ? Signup : Home}
+            />
+            <Route
+              path="/login"
+              exact
+              component={!currentUser ? Login : Home}
+            ></Route>
           </Switch>
         </Suspense>
       </Router>
