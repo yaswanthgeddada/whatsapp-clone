@@ -11,7 +11,7 @@ const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
 
   return (
-    <div className="flex w-screen h-screen justify-between">
+    <div className="flex w-screen h-screen justify-between md:overflow-scrollable overflow-hidden">
       <div className="bg-pale sm:w-96 hidden md:block md:w-2/5 border-r-2 border-gray-400  border-opacity-25 overflow-y-scroll">
         <Sidebar
           setToggleSidebar={setToggleSidebar}

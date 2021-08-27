@@ -41,7 +41,7 @@ const Conversation = () => {
     // console.log(newMessage);
     e.preventDefault();
 
-    if (newMessage) {
+    if (newMessage && newMessage.length > 0) {
       socket.current.emit("sendMessage", {
         senderId: currentUser._id,
         receiverId: friendId,
@@ -49,13 +49,15 @@ const Conversation = () => {
       });
 
       try {
+        setNewMessage("");
+
         const meg = await sendNewMessage(
           currentConversation._id,
           currentUser._id,
           newMessage
         );
+
         setMessages([...messages, meg]);
-        setNewMessage("");
       } catch (error) {
         console.log(error);
       }

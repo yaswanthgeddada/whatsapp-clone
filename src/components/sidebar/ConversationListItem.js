@@ -52,7 +52,9 @@ const ConversationListItem = ({
           alt=""
         />
         <div className="flex flex-col ">
-          <span className="text-gray-300 text-lg">{user?.username}</span>
+          <span className="text-gray-300 text-lg truncate w-36">
+            {user?.username}
+          </span>
           <span className="text-gray-400 text-sm">{lastMsg?.text}</span>
         </div>
       </div>

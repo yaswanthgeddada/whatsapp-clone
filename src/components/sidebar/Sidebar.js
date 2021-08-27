@@ -51,8 +51,10 @@ const Sidebar = ({ setToggleSidebar, toggleSidebar }) => {
     const conversation = async () => {
       try {
         const result = await getConverssation(currentUser._id);
-        setCurrentConv(result);
-        // console.log(result);
+        setCurrentConv(
+          result.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        );
+        console.log(result);
       } catch (error) {
         console.log(error);
       }
@@ -71,7 +73,7 @@ const Sidebar = ({ setToggleSidebar, toggleSidebar }) => {
       if (searchTerm.length > 2) {
         setLoading(true);
         try {
-          const result = await searchUser(searchTerm);
+          const result = await searchUser(searchTerm.toLowerCase());
           // console.log(result);
           const res = result.filter(
             (u) =>

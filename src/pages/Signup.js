@@ -28,7 +28,7 @@ const Singup = () => {
         try {
           setIsLoading(true);
           await signIn(
-            email.current.value,
+            email.current.value.toLowerCase(),
             password.current.value,
             username.current.value
           );

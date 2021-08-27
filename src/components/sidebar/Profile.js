@@ -10,6 +10,24 @@ import { LinearProgress } from "@material-ui/core";
 import { useUser } from "../../context/UserContext";
 import { useOwnAuth } from "../../context/OwnAuthContext";
 
+import Resizer from "react-image-file-resizer";
+
+const resizeFile = (file) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      300,
+      300,
+      "JPEG",
+      100,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "file"
+    );
+  });
+
 export default function Profile({ setIsOpen, currentUser }) {
   const { updateUserDetails } = useUser();
   const { updateCurrentUser } = useOwnAuth();
@@ -28,7 +46,15 @@ export default function Profile({ setIsOpen, currentUser }) {
   const onSelectProfilePic = async (e) => {
     if (e.target.files[0]) {
       // console.log(e.target.files[0]);
-      let image = e.target.files[0];
+      let originalImage = e.target.files[0];
+      let image;
+
+      try {
+        image = await resizeFile(originalImage);
+        console.log(image);
+      } catch (err) {
+        console.log(err);
+      }
 
       try {
         await addImageToStorageBucket(
